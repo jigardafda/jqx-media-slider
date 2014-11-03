@@ -1,0 +1,28 @@
+/**
+ * Styles for Example 1
+ */
+#e1 {
+	width: 200px;
+}
+
+/**
+ * Styles for Example 2
+ */
+#e2 {
+	width: 240px;
+}
+
+#e2 .text-block {
+	text-align: center;
+    white-space: normal;
+    color: rgb(91, 91, 91);
+    margin-top: 10px;
+    font-size: large;
+}
+
+/**
+ * Styles for Example 2
+ */
+#e3 {
+	width: 500px;
+}

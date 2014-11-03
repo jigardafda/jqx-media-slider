@@ -1,0 +1,25 @@
+{
+  "name": "jqx-media-slider",
+  "version": "0.0.1",
+  "authors": [
+    "Jigar Dafda <jigar.dafda@gmail.com>"
+  ],
+  "description": "Simple jQuery Slider",
+  "keywords": [
+    "jQuery",
+    "Plugin",
+    "slider",
+    "images-slider",
+    "carousel"
+  ],
+  "license": "MIT",
+  "homepage": "jigardafda.github.io",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ]
+}
