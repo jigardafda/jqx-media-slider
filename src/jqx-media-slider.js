@@ -21,6 +21,7 @@
         this._bindEvents(container);
         
         this.itemlist = [];
+
         this.appendItems(this.options.items);
     }
     
@@ -28,6 +29,7 @@
         this.options = options || {};
 
         this.options.itemWidth = parseFloat(options.itemWidth) || 50;
+
         this.options.itemHeight =  parseFloat(options.itemHeight) || 50;
 
         if (typeof(options.widthBetweenItems) === 'undefined') {
@@ -47,34 +49,52 @@
         return options;
     };
     
+    MediaSlider.prototype.trigger = function(evnt){
+        var scope = this;
+        scope.container.trigger("jqx-media-slider-" + evnt);
+    };
+
+    MediaSlider.prototype.enableButton = function(btn, val){
+        var scope = this,
+            method = val ? "removeClass" : "addClass";
+        if(btn === "left") {
+            scope.buttons.left[method]('disable');
+            return;
+        } else if (btn === "right") {
+            scope.buttons.right[method]('disable');
+            return;
+        }
+        scope.buttons.left[method]('disable');
+        scope.buttons.right[method]('disable');
+    };
+
     MediaSlider.prototype._bindEvents = function(){
         var scope = this,
             container = this.container;
 
         container.on("click","[data-jqx-left-btn]", function(evt){
             var $this = $(this);
-            if(scope.isVisibleWidthSmallerThanMovingContainer()){
-                scope.container.trigger("jqx-slider-start");
-                scope.container.trigger("jqx-slider-end");
-                scope.buttons.left.addClass('disable');
+            if(scope.isMovingBoxSmall()){
+                scope.trigger("start");
+                scope.trigger("end");
                 return;
             }
-            $(this).removeClass('disable');
             scope.moveLeft(scope.options.changeOffset);
         });
+
         container.on("click","[data-jqx-right-btn]", function(evt){
             var $this = $(this);
-            if(scope.isVisibleWidthSmallerThanMovingContainer()){
-                scope.container.trigger("jqx-slider-start");
-                scope.container.trigger("jqx-slider-end");
+            if(scope.isMovingBoxSmall()){
+                scope.trigger("start");
+                scope.trigger("end");
                 scope.buttons.right.addClass('disable');
                 return;
             }
-            $this.removeClass('disable');
             scope.moveRight(scope.options.changeOffset);
         });
+
         container.on("click","[data-jqx-item-box]", function(evt){
-            container.trigger("jqx-slider-item-cliked");
+            container.trigger("item-cliked");
         });
     };
     
@@ -84,7 +104,7 @@
         }));
     };
 
-    MediaSlider.prototype.getFullWidthOfMovingContainer = function(){
+    MediaSlider.prototype.getWidthOfMovingBox = function(){
         var fullWidth = this.itemlist.length * (this.options.itemWidth) + 
                         (this.itemlist.length - 1) * this.options.widthBetweenItems;
         return fullWidth;
@@ -94,13 +114,13 @@
         return parseFloat(this.movingBoxHolder.width());
     };
 
-    MediaSlider.prototype.isVisibleWidthSmallerThanMovingContainer = function(){
-        return  this.getFullWidthOfMovingContainer() <= this.getVisibleWidth();
+    MediaSlider.prototype.isMovingBoxSmall = function(){
+        return  this.getWidthOfMovingBox() <= this.getVisibleWidth();
     };
 
     MediaSlider.prototype.isInLimit = function(newLeft){
         var widthVisible = this.getVisibleWidth(),
-            fullWidth = this.getFullWidthOfMovingContainer();
+            fullWidth = this.getWidthOfMovingBox();
         if (newLeft <= 0) {
             return newLeft + fullWidth - widthVisible;
         } else {
@@ -115,12 +135,11 @@
             var changedLeft = parseInt(val) + changeOffset;
 
             if (changedLeft >=0) {
-                scope.container.trigger("jqx-media-slider-start");
-                scope.buttons.left.addClass("disable");
+                scope.trigger("start");
+                scope.checkEndsNEnbaleButtons(0);
                 return '0px';
             }
-            scope.buttons.left.removeClass("disable");
-            scope.buttons.right.addClass("disable");
+            scope.checkEndsNEnbaleButtons(changedLeft);
             return changedLeft + 'px';
         });
     };
@@ -133,16 +152,42 @@
                 remainingLength = scope.isInLimit(changedLeft);
             
             if (remainingLength <= 0) {
-                scope.container.trigger("jqx-slider-end");
-                scope.buttons.right.addClass("disable");
+                scope.trigger("end");
+                scope.checkEndsNEnbaleButtons(changedLeft - remainingLength);
                 return changedLeft - remainingLength + 'px';
             }
-            scope.buttons.right.removeClass("disable");
-            scope.buttons.left.addClass("disable");
+            scope.checkEndsNEnbaleButtons(changedLeft);
             return changedLeft + 'px';
         });
     };
     
+    MediaSlider.prototype.checkEndsNEnbaleButtons = function(passedleft){
+        var scope = this,
+            currentLeft,
+            remainingLength;
+        
+        if (typeof(passedleft) === 'undefined') {
+            /* to consider zero pixel */
+            currentLeft = parseFloat(scope.movingBox.css('left'));
+        } else {
+            currentLeft = passedleft;
+        }
+
+        remainingLength = scope.isInLimit(currentLeft);
+
+        if (currentLeft >= 0) { // Start of slider
+            scope.enableButton("left", false);
+        } else {
+            scope.enableButton("left", true);
+        }
+        if (remainingLength <= 0) { // end of slider
+            scope.enableButton("right", false);
+        } else {
+            scope.enableButton("right", true);
+        }
+
+    };
+
     MediaSlider.prototype.appendItems = function(inputArray){
         var scope = this,
             iArray = inputArray || [];
@@ -150,10 +195,12 @@
         iArray.forEach(function(obj) {
             scope.renderItemContainer(obj);
         });
-        if(scope.isVisibleWidthSmallerThanMovingContainer()){
-            scope.buttons.right.addClass('disable');
+        if(scope.isMovingBoxSmall()){
+            // disable both
+            scope.enableButton("both", false);
         } else {
-            scope.buttons.right.removeClass('disable');
+            // enable after checking the ends
+            scope.checkEndsNEnbaleButtons();
         }
     };
 
@@ -187,7 +234,6 @@
                           })
                           .html(innerContent);
         // TODO: Need to Fix Later
-
         return $('<div>').append(tmplt.clone()).html();
     };
     
