@@ -3,12 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Jqx-media-slider by jigardafda</title>
+    <title>Jqx-Media-Slider by Jigar Dafda</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <script src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/jigardafda/jqx-media-slider/master/dist/jqx-media-slider.min.js"></script>
+     <link rel="stylesheet" href="https://cdn.rawgit.com/jigardafda/jqx-media-slider/master/dist/jqx-media-slider.min.css">
+     <script type="text/javascript" src="javascripts/app.js"></script>
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -16,8 +20,8 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1 class="header">Jqx-media-slider</h1>
-        <p class="header">Simple jQuery Media Slider Plugin</p>
+        <h1 class="header">Jqx-Media-Slider</h1>
+        <p class="header">Simple and Customizable jQuery Media Slider Plugin</p>
 
         <ul>
           <li class="download"><a class="buttons" href="https://github.com/jigardafda/jqx-media-slider/zipball/master">Download ZIP</a></li>
@@ -25,15 +29,19 @@
           <li><a class="buttons github" href="https://github.com/jigardafda/jqx-media-slider">View On GitHub</a></li>
         </ul>
 
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/jigardafda">jigardafda</a></p>
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/jigardafda">Jigar Dafda</a></p>
 
 
       </header>
       <section>
         <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+          <a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages">
+            <span class="octicon octicon-link"></span>
+          </a>
+          Welcome to DouGitHub Pages.
+        </h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+        <p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
 
 <pre><code>$ cd your_repo_root/repo_name
 $ git fetch origin
@@ -43,14 +51,37 @@ $ git checkout gh-pages
 <p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
 
 <h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Getting Started</h3>
+
+<p>First thing, include jQuery Library from cdn or local server. from Jqx-Media-Slider repo include minified javascript and css files.</p>
+<pre><code>&lt;!-- jQuery library (served from Google) --&gt;
+&lt;script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;!-- bxSlider Javascript file --&gt;
+&lt;script src="/js/jqx-media-slider.min.js"&gt;&lt;/script&gt;
+&lt;!-- bxSlider CSS file --&gt;
+&lt;link href="/styles/jqx-media-slider.min.js" rel="stylesheet" /&gt;
+</code></pre>
 
 <p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
 
 <h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Options and Events</h3>
 
 <p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+
+<h3>
+<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Examples</h3>
+<div id="example1"></div>
+
+<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+
+
+<div id="example2"></div>
+<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+
+<div id="example3"></div>
+<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+
 
 <h3>
 <a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
