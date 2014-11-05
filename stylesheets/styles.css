@@ -159,7 +159,7 @@ p img {
 }
 
 /* Code blocks */
-
+/*
 code, pre {
 	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   color:#000;
@@ -174,7 +174,7 @@ pre {
   overflow: auto;
   overflow-y: hidden;
 	margin-bottom: 32px;
-}
+}*/
 
 
 /* Tables */
@@ -418,4 +418,26 @@ footer {
     font-size:12pt;
     color:#444;
   }
+}
+
+/*-------------------------------------*/
+
+dt {
+  font-weight: bold;
+}
+dd {
+  margin-left: 50px;
+}
+/*------------------------*/
+.gist pre,
+.gist code {
+    font: inherit;
+    white-space: pre;
+}
+.gist {
+    font:100%/1 sans-serif;
+}
+
+.gist .line-data {
+    background-color: #f4f4f4;
 }
