@@ -442,6 +442,9 @@ dd {
     background-color: #f4f4f4;
 }
 
+.gist table.lines {
+    margin-bottom: 0px;	
+}
 
 /* ----------------------------------- */
 /* Gradient transparent - color - transparent */
