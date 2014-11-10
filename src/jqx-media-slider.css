@@ -1,4 +1,4 @@
-/*! jqx-media-slider 2014-11-05 */
+/*! jqx-media-slider 2014-11-10 */
 /* Constants */
 /* Mixins */
 .jqx-media-slider {
@@ -11,12 +11,13 @@
   /* item container */
   /* css triangles */
   /* common styles */
+  /* default image rendrer class*/
 }
 .jqx-media-slider .jqx-btn {
   top: 0px;
   z-index: 2;
   height: 100%;
-  opacity: .3;
+  opacity: .45;
   cursor: pointer;
   width: 20px;
   background-color: #e6e6e6;
@@ -26,7 +27,7 @@
   transition: opacity 0.6s;
 }
 .jqx-media-slider .jqx-btn:hover {
-  opacity: .6;
+  opacity: .9;
 }
 .jqx-media-slider .jqx-btn.disable {
   cursor: auto;
@@ -42,8 +43,14 @@
 .jqx-media-slider .jqx-btn-right {
   right: 0px;
 }
+.jqx-media-slider .jqx-btn-right.hide {
+  display: none;
+}
 .jqx-media-slider .jqx-btn-left {
   left: 0px;
+}
+.jqx-media-slider .jqx-btn-left.hide {
+  display: none;
 }
 .jqx-media-slider .jqx-moving-box-holder {
   top: 0px;
@@ -51,6 +58,9 @@
   overflow: hidden;
   margin: 0px 20px;
   white-space: nowrap;
+}
+.jqx-media-slider .jqx-moving-box-holder.no-margin {
+  margin: 0;
 }
 .jqx-media-slider .jqx-moving-box {
   left: 0px;
@@ -63,19 +73,11 @@
 .jqx-media-slider .jqx-item-box {
   width: 50px;
   height: 50px;
-  opacity: .8;
   cursor: pointer;
   overflow: hidden;
   margin-right: 3px;
   white-space: normal;
   display: inline-block;
-  -webkit-transition: opacity 0.6s;
-  -moz-transition: opacity 0.6s;
-  -o-transition: opacity 0.6s;
-  transition: opacity 0.6s;
-}
-.jqx-media-slider .jqx-item-box:hover {
-  opacity: 1;
 }
 .jqx-media-slider .jqx-triangle-left {
   width: 0;
@@ -105,4 +107,14 @@
   -moz-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+.jqx-media-slider .jqx-dr-image {
+  opacity: .85;
+  -webkit-transition: opacity 0.6s;
+  -moz-transition: opacity 0.6s;
+  -o-transition: opacity 0.6s;
+  transition: opacity 0.6s;
+}
+.jqx-media-slider .jqx-dr-image:hover {
+  opacity: 1;
 }

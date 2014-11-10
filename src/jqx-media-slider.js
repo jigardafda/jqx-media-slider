@@ -18,6 +18,8 @@
         
         this.movingBox.height(this.options.itemHeight);
         
+        this.sliderButtonsInit();
+
         this._bindEvents(container);
         
         this.itemlist = [];
@@ -44,9 +46,36 @@
         this.options.changeOffset = parseFloat(options.changeOffset) || 
                                (options.itemWidth + parseFloat(options.widthBetweenItems)/2);
         
+        /* items to be added at beginning */
         this.options.items = options.items || [];
-        
-        return options;
+
+        /* Slider navigation buttons configuration options */
+
+        this.options.widthOfSliderButtons = parseFloat(options.widthOfSliderButtons) || 20;
+
+        if(options.sliderButtons === "in" || options.sliderButtons === "hidden") {
+            this.options.sliderButtons = options.sliderButtons;
+        } else {
+            this.options.sliderButtons = "out";
+        }
+    };
+
+    MediaSlider.prototype.sliderButtonsInit = function(){
+        var noMarginClass = "no-margin",
+            hiddenClass = "hide",
+            widthProp = "width";
+        /* Slider button mode */
+        if(this.options.sliderButtons === "in") {
+            this.movingBoxHolder.addClass(noMarginClass);
+        } else if(this.options.sliderButtons === "hidden") {
+            this.movingBoxHolder.addClass(noMarginClass);
+            this.buttons.left.addClass(hiddenClass);
+            this.buttons.right.addClass(hiddenClass);
+        }
+
+        /* Slider buttons width */
+        this.buttons.left.css(widthProp, this.options.widthOfSliderButtons);
+        this.buttons.right.css(widthProp, this.options.widthOfSliderButtons);
     };
     
     MediaSlider.prototype.trigger = function(evnt){
@@ -240,6 +269,7 @@
     MediaSlider.prototype.defaultItemRenderFunction = function(context){
         return $('<img>').attr("src", context.src)
                          .attr("alt", context.alt || '')
+                         .addClass("jqx-dr-image")
                          .clone();
     };
     

@@ -1,27 +1,34 @@
 $(function() {
 
+			function getRandomImgUrl(height, width, type, num) {
+				var arr = ["abstract", "animals", "business", "cats", "city", 
+						   "food", "nightlife", "fashion", "people", "nature",
+						   "sports" ,"technics", "transport"], url;
+				type = type || arr[Math.ceil(Math.random() * arr.length - 1)];
+				height = height || 50;
+				width = width || 50;
+				num = num || Math.ceil(Math.random() * 10);
+				return "http://lorempixel.com/" + height +"/" + width + "/" + type + "/" + num;
+			}
+
+			function getRandomImgUrlArray(total ,height ,width ,type ,num) {
+				var x = [], i, url;
+				for(i = 0; i < total; i++){
+					url = getRandomImgUrl(height, width, type, num);
+					x.push({
+						src: url,
+						alt: url.replace("http://lorempixel.com/","")
+					})
+				}
+				return x;
+			}
+	
 			/**
 			 * Example 1 
 			 * container -> #e1
 			 */
 			var e1 = $("#e1").mediaSlider({
-				items: [
-					{
-						src: "http://lorempixel.com/g/100/100/sports/1"
-					},
-					{
-						src: "http://lorempixel.com/g/100/100/sports/2"
-					},
-					{
-						src: "http://lorempixel.com/g/100/100/sports/3"
-					},
-					{
-						src: "http://lorempixel.com/g/100/100/sports/4"
-					},
-					{
-						src: "http://lorempixel.com/g/100/100/sports/5"
-					}
-				]
+				items: getRandomImgUrlArray(10, 50, 50)
 			});
 
 			/**
@@ -34,24 +41,14 @@ $(function() {
 			    changeOffset: 200,
 			    widthBetweenItems: 0,
 				items: [
-					{
-						text: "First String"
-					},
-					{
-						text: "Second String"
-					},
-					{
-						text: "Third String"
-					},
-					{
-						text: "Fourth String"
-					},
-					{
-						text: "Fifth String"
-					}
+						"First String",
+						"Second String",
+						"Third String",
+						"Fourth String",
+						"Fifth String"
 				],
 				itemRender: function(context){
-			        return '<div class="text-block"><p>' + context.text + '</p></div>';
+			        return '<div class="text-block"><p>' + context + '</p></div>';
 			    }
 			});
 
@@ -64,21 +61,13 @@ $(function() {
 			    itemHeight: 100,
 			    changeOffset: 200,
 			    widthBetweenItems: 5,
-				items: [
-					{
-						src: "http://lorempixel.com/g/100/100/sports/1"
-					},
-					{
-						src: "http://lorempixel.com/g/100/100/sports/2"
-					}
-				]
+				items: getRandomImgUrlArray(2, 100, 100)
 			});
 
 			$("#e3-add-button").on("click", function(){
-				var randomImgUrl = "http://lorempixel.com/g/100/100/sports/" + Math.ceil(Math.random() * 10);
 				e3.appendItems([
 					{
-						src: randomImgUrl
+						src: getRandomImgUrl(100, 100)
 					}
 				]);
 			});
@@ -92,21 +81,48 @@ $(function() {
 			    itemHeight: 100,
 			    changeOffset: 200,
 			    widthBetweenItems: 5,
-				items: [
-					{
-						src: "http://lorempixel.com/g/100/100/city/1"
-					},
-					{
-						src: "http://lorempixel.com/g/100/100/city/2"
-					}
-				]
+				items: getRandomImgUrlArray(2, 100, 100)
 			});
 
 			$("#e4-add-button").on("click", function(){
-				var randomImgUrl = "http://lorempixel.com/g/100/100/city/" + Math.ceil(Math.random() * 10);
 				e4.appendItems([
 					{
-						src: randomImgUrl
+						src: getRandomImgUrl(100, 100)
+					}
+				]);
+			});
+
+			/**
+			 * Example 5
+			 * container -> #e5
+			 */
+			var e5 = $("#e5").mediaSlider({
+				itemWidth: 100,
+			    itemHeight: 100,
+			    changeOffset: 200,
+			    widthBetweenItems: 5,
+			    sliderButtons: "in",
+				items: getRandomImgUrlArray(20, 100, 100)
+			});
+
+			/**
+			 * Example 6
+			 * container -> #e6
+			 */
+			var e6 = $("#e6").mediaSlider({
+				itemWidth: 150,
+			    itemHeight: 100,
+			    changeOffset: 200,
+			    widthBetweenItems: 5,
+			    sliderButtons: "in",
+			    widthOfSliderButtons: 40,
+				items: getRandomImgUrlArray(12, 150, 100)
+			});
+
+			$("#e6-add-button").on("click", function(){
+				e6.appendItems([
+					{
+						src: getRandomImgUrl(150, 100)
 					}
 				]);
 			});
