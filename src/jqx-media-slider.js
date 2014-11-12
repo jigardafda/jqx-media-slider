@@ -1,6 +1,6 @@
 (function(win, $){
     function MediaSlider(container, options){
-        
+        console.log("created");
         this._optionsFilter(options);
         
         this.container = container;
@@ -27,7 +27,7 @@
         this.appendItems(this.options.items);
     }
     
-    MediaSlider.prototype._optionsFilter = function(options){
+    MediaSlider.prototype._optionsFilter = function(options) {
         this.options = options || {};
 
         this.options.itemWidth = parseFloat(options.itemWidth) || 50;
@@ -60,7 +60,7 @@
         }
     };
 
-    MediaSlider.prototype.sliderButtonsInit = function(){
+    MediaSlider.prototype.sliderButtonsInit = function() {
         var noMarginClass = "no-margin",
             hiddenClass = "hide",
             widthProp = "width";
@@ -78,12 +78,12 @@
         this.buttons.right.css(widthProp, this.options.widthOfSliderButtons);
     };
     
-    MediaSlider.prototype.trigger = function(evnt){
+    MediaSlider.prototype.trigger = function(evnt) {
         var scope = this;
         scope.container.trigger("jqx-media-slider-" + evnt);
     };
 
-    MediaSlider.prototype.enableButton = function(btn, val){
+    MediaSlider.prototype.enableButton = function(btn, val) {
         var scope = this,
             method = val ? "removeClass" : "addClass";
         if(btn === "left") {
@@ -97,21 +97,21 @@
         scope.buttons.right[method]('disable');
     };
 
-    MediaSlider.prototype._bindEvents = function(){
+    MediaSlider.prototype._bindEvents = function() {
         var scope = this,
             container = this.container;
 
-        container.on("click","[data-jqx-left-btn]", function(evt){
+        container.on("click.jqxmsevents","[data-jqx-left-btn]", function(evt) {
             var $this = $(this);
             if(scope.isMovingBoxSmall()){
                 scope.trigger("start");
                 scope.trigger("end");
                 return;
             }
-            scope.moveLeft(scope.options.changeOffset);
+            scope.moveLeft();
         });
 
-        container.on("click","[data-jqx-right-btn]", function(evt){
+        container.on("click.jqxmsevents","[data-jqx-right-btn]", function(evt) {
             var $this = $(this);
             if(scope.isMovingBoxSmall()){
                 scope.trigger("start");
@@ -119,35 +119,35 @@
                 scope.buttons.right.addClass('disable');
                 return;
             }
-            scope.moveRight(scope.options.changeOffset);
+            scope.moveRight();
         });
 
-        container.on("click","[data-jqx-item-box]", function(evt){
+        container.on("click.jqxmsevents","[data-jqx-item-box]", function(evt) {
             container.trigger("item-cliked");
         });
     };
     
-    MediaSlider.prototype.renderItemContainer = function(iObj){
+    MediaSlider.prototype.renderItemContainer = function(iObj) {
         this.movingBox.append(this.getItemContainerTmplt({ 
             context:iObj
         }));
     };
 
-    MediaSlider.prototype.getWidthOfMovingBox = function(){
+    MediaSlider.prototype.getWidthOfMovingBox = function() {
         var fullWidth = this.itemlist.length * (this.options.itemWidth) + 
                         (this.itemlist.length - 1) * this.options.widthBetweenItems;
         return fullWidth;
     };
 
-    MediaSlider.prototype.getVisibleWidth = function(){
+    MediaSlider.prototype.getVisibleWidth = function() {
         return parseFloat(this.movingBoxHolder.width());
     };
 
-    MediaSlider.prototype.isMovingBoxSmall = function(){
+    MediaSlider.prototype.isMovingBoxSmall = function() {
         return  this.getWidthOfMovingBox() <= this.getVisibleWidth();
     };
 
-    MediaSlider.prototype.isInLimit = function(newLeft){
+    MediaSlider.prototype.isInLimit = function(newLeft) {
         var widthVisible = this.getVisibleWidth(),
             fullWidth = this.getWidthOfMovingBox();
         if (newLeft <= 0) {
@@ -157,9 +157,9 @@
         }
     };
     
-    MediaSlider.prototype.moveLeft = function(changeOffset){
+    MediaSlider.prototype.moveLeft = function(changeOffset) {
         var scope = this;
-
+        changeOffset = changeOffset || scope.options.changeOffset;
         scope.movingBox.css('left', function(index, val){
             var changedLeft = parseInt(val) + changeOffset;
 
@@ -173,9 +173,9 @@
         });
     };
 
-    MediaSlider.prototype.moveRight = function(changeOffset){
+    MediaSlider.prototype.moveRight = function(changeOffset) {
         var scope = this;
-
+        changeOffset = changeOffset || scope.options.changeOffset;
         scope.movingBox.css('left', function(index, val){
             var changedLeft = parseFloat(val) - changeOffset,
                 remainingLength = scope.isInLimit(changedLeft);
@@ -190,7 +190,7 @@
         });
     };
     
-    MediaSlider.prototype.checkEndsNEnbaleButtons = function(passedleft){
+    MediaSlider.prototype.checkEndsNEnbaleButtons = function(passedleft) {
         var scope = this,
             currentLeft,
             remainingLength;
@@ -217,7 +217,7 @@
 
     };
 
-    MediaSlider.prototype.appendItems = function(inputArray){
+    MediaSlider.prototype.appendItems = function(inputArray) {
         var scope = this,
             iArray = inputArray || [];
         scope.itemlist = scope.itemlist.concat(iArray);
@@ -233,7 +233,7 @@
         }
     };
 
-    MediaSlider.prototype.getMainContainerTmplt = function(){
+    MediaSlider.prototype.getMainContainerTmplt = function() {
         /*jshint multistr:true */
         var tmplt = '<div class="jqx-media-slider"> \
                         <div class="jqx-btn jqx-btn-right jqx-absolute" data-jqx-right-btn=""> \
@@ -250,7 +250,7 @@
         return tmplt;
     };
     
-    MediaSlider.prototype.getItemContainerTmplt = function(cObj){
+    MediaSlider.prototype.getItemContainerTmplt = function(cObj) {
         var tmplt,
             innerContent = this.options.itemRender(cObj.context);
 
@@ -266,20 +266,47 @@
         return $('<div>').append(tmplt.clone()).html();
     };
     
-    MediaSlider.prototype.defaultItemRenderFunction = function(context){
+    MediaSlider.prototype.defaultItemRenderFunction = function(context) {
         return $('<img>').attr("src", context.src)
                          .attr("alt", context.alt || '')
                          .addClass("jqx-dr-image")
                          .clone();
     };
+
+    MediaSlider.prototype.destroy = function() {
+        this.container.off('jqxmsevents');
+        this.container.empty();
+    };
     
     $.fn.mediaSlider = function(options){
-        var ms = new MediaSlider(this, options);
-        return $.extend(this,{
-            appendItems: function(x){
+        var $this = $(this), ms, instance;
+        instance = $(this).data('jqx-media-slider');
+        if (instance) {
+            if (options === 'destroy') {
+                instance.destroy();
+                $this.data('jqx-media-slider', null);
+                return;
+            }
+            return instance;
+        }
+        ms = new MediaSlider(this, options);
+        instance = $.extend(this, {
+            appendItems: function(x) {
                 ms.appendItems(x);
+            },
+            next: function() {
+                ms.moveRight();
+            },
+            prev: function() {
+                ms.moveLeft();
+            },
+            destroy: function(){
+                ms.destroy();
+                $this.data('jqx-media-slider', null);
             }
         });
+        $this.data('jqx-media-slider', instance);
+        return instance;
     };
 
 }(window, jQuery));

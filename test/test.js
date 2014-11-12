@@ -1,4 +1,5 @@
 $(function() {
+			$doc = $(document);
 
 			function getRandomImgUrl(height, width, type, num) {
 				var arr = ["abstract", "animals", "business", "cats", "city", 
@@ -64,7 +65,7 @@ $(function() {
 				items: getRandomImgUrlArray(2, 100, 100)
 			});
 
-			$("#e3-add-button").on("click", function(){
+			$doc.on("click", "#e3-add-button", function(){
 				e3.appendItems([
 					{
 						src: getRandomImgUrl(100, 100)
@@ -84,7 +85,7 @@ $(function() {
 				items: getRandomImgUrlArray(2, 100, 100)
 			});
 
-			$("#e4-add-button").on("click", function(){
+			$doc.on("click", "#e4-add-button", function(){
 				e4.appendItems([
 					{
 						src: getRandomImgUrl(100, 100)
@@ -119,12 +120,66 @@ $(function() {
 				items: getRandomImgUrlArray(12, 150, 100)
 			});
 
-			$("#e6-add-button").on("click", function(){
+			$doc.on("click", "#e6-add-button", function(){
 				e6.appendItems([
 					{
 						src: getRandomImgUrl(150, 100)
 					}
 				]);
+			});
+
+			/**
+			 * Example 7
+			 * container -> #e7
+			 */
+			var e7 = $("#e7").mediaSlider({
+				itemWidth: 150,
+			    itemHeight: 100,
+			    changeOffset: 200,
+			    widthBetweenItems: 5,
+			    sliderButtons: "hidden",
+			    widthOfSliderButtons: 40,
+				items: getRandomImgUrlArray(12, 150, 100)
+			});
+
+			var e7Instance = $("#e7").data("jqx-media-slider");
+
+			$doc.on("click","#e7-prev-button", function(){
+				e7Instance.prev();
+			});
+			$doc.on("click", "#e7-next-button", function(){
+				e7Instance.next();
+			});
+
+			/**
+			 * Example 8
+			 * container -> #e8
+			 */
+			var options8 = {
+				itemWidth: 150,
+			    itemHeight: 100,
+			    changeOffset: 200,
+			    widthBetweenItems: 5,
+				items: getRandomImgUrlArray(12, 150, 100)
+			};
+			var e8 = $("#e8").mediaSlider(options8);
+
+			var e8Instance = $("#e8").data("jqx-media-slider");
+
+			$doc.on("click","#e8-prev-button", function(){
+				e8.prev();
+			});
+
+			$doc.on("click", "#e8-next-button", function(){
+				e8.next();
+			});
+
+			$doc.on("click", "#e8-create-again-button", function(){
+				$("#e8").mediaSlider(options8);
+			});
+
+			$doc.on("click", "#e8-destroy-button", function(){
+				e8Instance.destroy();
 			});
 
 });
