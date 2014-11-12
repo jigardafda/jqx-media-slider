@@ -1,6 +1,6 @@
 (function(win, $){
     function MediaSlider(container, options){
-        console.log("created");
+
         this._optionsFilter(options);
         
         this.container = container;
