@@ -88,4 +88,12 @@ $(function(argument) {
 		}
 	});
 
+	$("#example7").mediaSlider({
+		itemHeight: 100,
+		itemWidth: 100,
+		changeOffset: 200,
+		sliderButtons: 'in',
+		items: getRandomImgUrlArray(20, 100, 100)
+	});
+
 });
