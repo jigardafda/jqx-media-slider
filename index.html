@@ -6,6 +6,7 @@
     <title>Jqx-Media-Slider by Jigar Dafda</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="stylesheets/examples-styles.css">
     <script src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -14,7 +15,6 @@
     <link rel="stylesheet"
           href="https://rawgit.com/jigardafda/jqx-media-slider/master/dist/jqx-media-slider.min.css">
     <script type="text/javascript" src="javascripts/app.js"></script>
-
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -82,6 +82,7 @@
             <li><a href="#example5">Slider With Text</a></li>
             <li><a href="#example6">Slider With YouTube Videos</a></li>
             <li><a href="#example7">Slider Buttons - Inside The Container</a></li>
+            <li><a href="#example8">Custom Navigation Buttons</a></li>
         </ol>
     </div>
 
@@ -144,6 +145,33 @@
             <script src="https://gist.github.com/jigardafda/7b75073fb0a1099e48e8.js?file=defaultRender.js"></script>
         </dd>
         <dd>Retuned value of this function will be added in the container.</dd>
+    </div>
+
+    <h3>
+        <a name="rather-drive-stick" class="anchor" href="#rather-drive-stick">
+            <span class="octicon octicon-link"></span>
+        </a>
+        Instance Methods
+    </h3>
+    <p>
+        Following are the ways to get instace of the media slider.
+        <script src="https://gist.github.com/jigardafda/7b75073fb0a1099e48e8.js?file=getinstance.js"></script>
+    </p>
+    <div>
+        <dt>appendItems</dt>
+        <dd>Appends the new items to the slider.</dd>
+    </div>
+    <div>
+        <dt>next</dt>
+        <dd>Goes to next.</dd>
+    </div>
+    <div>
+        <dt>prev</dt>
+        <dd>Goes to previous.</dd>
+    </div>
+    <div>
+        <dt>destroy</dt>
+        <dd>Destroys the media slider.</dd>
     </div>
 
     <h3>
@@ -225,6 +253,28 @@
         <script src="https://gist.github.com/jigardafda/7b75073fb0a1099e48e8.js?file=example7.js"></script>
     </div>
 
+    <div>
+        
+        <h4><a name="example8">Example 8 : Custom Navigation Buttons</a></h4>
+        <div id="example8"></div>
+        <div id="example8-nav-btns">
+            <div>
+                <a class="left-btn arrow1 opacityTransition" href=""></a>
+                <a class="right-btn arrow1 opacityTransition" href=""></a>
+                <div style="clear:both;"></div>
+            </div>
+            <div>
+                <a class="left-btn arrow2 opacityTransition" href=""></a>
+                <a class="right-btn arrow2 opacityTransition" href=""></a>
+                <div style="clear:both;"></div>
+            </div>
+        </div>
+        <h5>Code: </h5>
+        <script src="https://gist.github.com/jigardafda/7b75073fb0a1099e48e8.js?file=example8.html"></script>
+        <script src="https://gist.github.com/jigardafda/7b75073fb0a1099e48e8.js?file=example8.css"></script>
+        <script src="https://gist.github.com/jigardafda/7b75073fb0a1099e48e8.js?file=example8.js"></script>
+    </div>
+
     <h3>
         <a name="authors-and-contributors" class="anchor" href="#authors-and-contributors">
             <span class="octicon octicon-link"></span>
@@ -235,8 +285,8 @@
     <p>
         <a href="https://github.com/jigardafda" class="user-mention">
             @jigardafda
-        </a>
-        This repo is open to contribution. 
+        </a>.
+        This repository is open to contribution. 
     </p>
 
     <h3>
