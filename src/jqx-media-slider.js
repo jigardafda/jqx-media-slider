@@ -16,8 +16,6 @@
             right: this.container.find('[data-jqx-right-btn]')
         };
         
-        this.movingBox.height(this.options.itemHeight);
-        
         this.sliderButtonsInit();
 
         this._bindEvents(container);

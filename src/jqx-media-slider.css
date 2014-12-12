@@ -1,4 +1,4 @@
-/*! jqx-media-slider 2014-11-13 */
+/*! jqx-media-slider 2014-12-13 */
 /* Constants */
 /* Mixins */
 .jqx-media-slider {
@@ -57,7 +57,6 @@
   left: 0px;
   overflow: hidden;
   margin: 0px 20px;
-  white-space: nowrap;
 }
 .jqx-media-slider .jqx-moving-box-holder.no-margin {
   margin: 0;
@@ -65,6 +64,8 @@
 .jqx-media-slider .jqx-moving-box {
   left: 0px;
   /* initial position */
+  white-space: nowrap;
+  line-height: 0px;
   -webkit-transition: left 0.6s;
   -moz-transition: left 0.6s;
   -o-transition: left 0.6s;
@@ -75,8 +76,10 @@
   height: 50px;
   cursor: pointer;
   overflow: hidden;
+  line-height: normal;
   margin-right: 3px;
   white-space: normal;
+  vertical-align: top;
   display: inline-block;
 }
 .jqx-media-slider .jqx-triangle-left {

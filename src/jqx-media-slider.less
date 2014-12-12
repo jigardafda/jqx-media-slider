@@ -71,7 +71,6 @@
         left: 0px;
         overflow: hidden;
         margin: 0px 20px;
-        white-space:nowrap;
     }
 
     .jqx-moving-box-holder.no-margin {
@@ -81,6 +80,8 @@
     /* moving container */
     .jqx-moving-box{
         left: 0px; /* initial position */
+        white-space:nowrap;
+        line-height: 0px;
         .transition-properties(left @jqx-moving-box-transition-speed);
     }
 
@@ -90,8 +91,10 @@
         height: 50px;
         cursor: pointer;
         overflow: hidden;
+        line-height: normal;
         margin-right: 3px;
         white-space: normal;
+        vertical-align: top;
         display: inline-block;
     }
 
